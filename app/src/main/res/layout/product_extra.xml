@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Nome do Produto -->
+        <TextView
+            android:id="@+id/productTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DETALHES DO PEDIDO"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#333333" />
+
+        <!-- Seção de escolha de tamanho -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Escolha o tamanho do bolo"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333" />
+
+        <!-- Opções de tamanho -->
+        <RadioGroup
+            android:id="@+id/sizeOptionsGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <RadioButton
+                android:id="@+id/sizeSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pequeno"
+                android:textSize="14sp"
+                android:textColor="#333333" />
+
+            <RadioButton
+                android:id="@+id/sizeMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Médio"
+                android:textSize="14sp"
+                android:textColor="#333333" />
+
+            <RadioButton
+                android:id="@+id/sizeLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grande"
+                android:textSize="14sp"
+                android:textColor="#333333" />
+        </RadioGroup>
+
+        <!-- Campo de observações -->
+        <EditText
+            android:id="@+id/observationField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Alguma observação?"
+            android:maxLength="140"
+            android:textSize="14sp"
+            android:backgroundTint="#CCCCCC" />
+
+        <!-- Botão de adicionar ao carrinho com contador de quantidade -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Botão de diminuir quantidade total -->
+            <Button
+                android:id="@+id/decreaseTotalQuantity"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="-"
+                android:textSize="20sp"
+                android:backgroundTint="#F0F0F0"
+                android:textColor="#333333" />
+
+            <!-- Quantidade total -->
+            <TextView
+                android:id="@+id/totalQuantityText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Botão de aumentar quantidade total -->
+            <Button
+                android:id="@+id/increaseTotalQuantity"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="+"
+                android:textSize="20sp"
+                android:backgroundTint="#F0F0F0"
+                android:textColor="#333333" />
+
+            <!-- Botão Adicionar ao carrinho -->
+            <Button
+                android:id="@+id/addToCartOptionsButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:text="Adicionar"
+                android:backgroundTint="#F44336"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout
