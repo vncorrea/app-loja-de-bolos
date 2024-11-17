@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     android:background="@color/light_ldb"
-    tools:context=".MainActivity">
+    tools:context=".login.presentation.LoginActivity">
 
-    <!-- Imagem centralizada -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="150dp"
