@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primary_ldb">#fada80</color>
+    <color name="secondary_ldb">#c08a56</color>
+    <color name="dark_ldb">#663721</color>
+    <color name="light_ldb">#f7d6a7</color>
+    <color name="info_ldb">#9c6464</color>
 </resources>
