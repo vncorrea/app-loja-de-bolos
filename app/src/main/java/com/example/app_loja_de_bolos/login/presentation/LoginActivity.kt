@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.app_loja_de_bolos.R
 import com.example.app_loja_de_bolos.databinding.ActivityLoginBinding
+import com.example.app_loja_de_bolos.recover_password.presentation.RecoverPasswordActivity
 import com.example.app_loja_de_bolos.register.presentation.RegisterActivity
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -51,9 +52,9 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.onCreateAccountClicked()
             }
 
-//            btnRecoverPassword.setOnClickListener {
-//                viewModel.onRecoverPasswordClicked(getEmailText())
-//            }
+            btnForgotPassword.setOnClickListener {
+                viewModel.onForgotPasswordClicked()
+            }
         }
     }
 
@@ -62,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
             LoginAction.NAVIGATE_HOME -> navigateHome()
             LoginAction.NAVIGATE_REGISTER -> navigateRegister()
             LoginAction.SHOW_ERROR_MSG -> showMessage("An error occurred. Try again.")
+            LoginAction.NAVIGATE_RECOVER_PASSWORD -> navigateRecoverPassword()
         }
     }
 
@@ -71,10 +73,15 @@ class LoginActivity : AppCompatActivity() {
 //        finish()
     }
 
+    private fun navigateRecoverPassword() {
+        val intent = Intent(this, RecoverPasswordActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun navigateRegister() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
-        finish()
+//        finish()
     }
 
     private fun showMessage(msg: String) {

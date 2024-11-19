@@ -17,10 +17,6 @@ class LoginRemoteDatasourceImpl(
         return mapToUserAuth(authResult)
     }
 
-    override suspend fun recover(email: String) {
-        firebaseAuth.sendPasswordResetEmail(email).await()
-    }
-
     private fun mapToUserAuth(authResult: AuthResult): UserLogin {
         authResult.user?.let { user ->
             return UserLogin(

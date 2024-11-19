@@ -28,6 +28,10 @@
         <activity
             android:name=".register.presentation.RegisterActivity"
             android:exported="true"></activity>
+
+        <activity
+            android:name=".recover_password.presentation.RecoverPasswordActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

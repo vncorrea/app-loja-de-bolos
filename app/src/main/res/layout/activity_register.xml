@@ -118,6 +118,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+
     <!-- Overlay de loading com ProgressBar centralizada -->
     <FrameLayout
         android:id="@+id/loading_overlay"

@@ -5,16 +5,12 @@ import com.example.app_loja_de_bolos.login.model.UserLogin
 
 class LoginRepositoryImpl(
     private val remoteDatasource: LoginRemoteDatasource
-): LoginRepository {
+) : LoginRepository {
     override fun isSessionValid(): Boolean {
         return remoteDatasource.isSessionValid()
     }
 
     override suspend fun login(email: String, password: String): UserLogin {
         return remoteDatasource.signin(email, password)
-    }
-
-    override suspend fun recover(email: String) {
-        remoteDatasource.recover(email)
     }
 }

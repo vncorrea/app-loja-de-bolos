@@ -46,4 +46,10 @@ class LoginViewModel(
             }
         }
     }
+
+    fun onForgotPasswordClicked() {
+        viewModelScope.launch {
+            _uiAction.emit(LoginAction.NAVIGATE_RECOVER_PASSWORD)
+        }
+    }
 }
