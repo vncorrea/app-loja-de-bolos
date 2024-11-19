@@ -25,10 +25,9 @@ class LoginViewModel(
         }
     }
 
-    fun onLoginClicked(emailText: String, passwordText: String) {
+    fun onLoginClicked() {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
-                loginRepository.login(emailText, passwordText)
                 _uiAction.emit(LoginAction.NAVIGATE_HOME)
             }.onFailure { e ->
                 _uiAction.emit(LoginAction.SHOW_ERROR_MSG)
@@ -37,26 +36,13 @@ class LoginViewModel(
         }
     }
 
-    fun onCreateAccountClicked(emailText: String, passwordText: String) {
+    fun onCreateAccountClicked() {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
-                loginRepository.createAccount(emailText, passwordText)
-                _uiAction.emit(LoginAction.NAVIGATE_HOME)
+                _uiAction.emit(LoginAction.NAVIGATE_REGISTER)
             }.onFailure { e ->
                 _uiAction.emit(LoginAction.SHOW_ERROR_MSG)
-                Log.e("LOGIN", e.message ?: "unknown", e)
-            }
-        }
-    }
-
-    fun onRecoverPasswordClicked(emailText: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            runCatching {
-                loginRepository.recover(emailText)
-                _uiAction.emit(LoginAction.SHOW_RECOVER_MSG)
-            }.onFailure { e ->
-                _uiAction.emit(LoginAction.SHOW_ERROR_MSG)
-                Log.e("LOGIN", e.message ?: "unknown", e)
+                Log.e("REGISTER", e.message ?: "unknown", e)
             }
         }
     }

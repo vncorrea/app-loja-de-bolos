@@ -4,7 +4,7 @@ import com.example.app_loja_de_bolos.login.data.LoginRepository
 import com.example.app_loja_de_bolos.login.data.LoginRepositoryImpl
 import com.example.app_loja_de_bolos.login.data.remote.LoginRemoteDatasourceImpl
 import com.example.app_loja_de_bolos.login.presentation.LoginViewModel
-import com.example.mvvmapplication.login.data.remote.LoginRemoteDatasource
+import com.example.app_loja_de_bolos.login.data.remote.LoginRemoteDatasource
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

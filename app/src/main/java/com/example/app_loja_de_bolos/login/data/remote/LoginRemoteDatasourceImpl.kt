@@ -1,7 +1,6 @@
 package com.example.app_loja_de_bolos.login.data.remote
 
-import com.example.app_loja_de_bolos.login.model.UserAuth
-import com.example.mvvmapplication.login.data.remote.LoginRemoteDatasource
+import com.example.app_loja_de_bolos.login.model.UserLogin
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
@@ -13,12 +12,7 @@ class LoginRemoteDatasourceImpl(
         return firebaseAuth.currentUser != null
     }
 
-    override suspend fun createAccount(email: String, password: String): UserAuth {
-        val authResult = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-        return mapToUserAuth(authResult)
-    }
-
-    override suspend fun signin(email: String, password: String): UserAuth {
+    override suspend fun signin(email: String, password: String): UserLogin {
         val authResult = firebaseAuth.signInWithEmailAndPassword(email, password).await()
         return mapToUserAuth(authResult)
     }
@@ -27,9 +21,9 @@ class LoginRemoteDatasourceImpl(
         firebaseAuth.sendPasswordResetEmail(email).await()
     }
 
-    private fun mapToUserAuth(authResult: AuthResult): UserAuth {
+    private fun mapToUserAuth(authResult: AuthResult): UserLogin {
         authResult.user?.let { user ->
-            return UserAuth(
+            return UserLogin(
                 user.uid,
                 user.displayName,
                 user.email ?: "",

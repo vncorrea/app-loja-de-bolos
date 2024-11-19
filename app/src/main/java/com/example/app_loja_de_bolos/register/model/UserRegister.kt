@@ -1,6 +1,6 @@
-package com.example.app_loja_de_bolos.login.model
+package com.example.app_loja_de_bolos.register.model
 
-data class UserAuth(
+data class UserRegister(
     val id: String? = null,
     val email: String? = null,
     val displayName: String = "",

@@ -1,4 +1,4 @@
-package com.example.app_loja_de_bolos.login.presentation
+package com.example.app_loja_de_bolos.register.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,20 +11,20 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.app_loja_de_bolos.R
-import com.example.app_loja_de_bolos.databinding.ActivityLoginBinding
-import com.example.app_loja_de_bolos.register.presentation.RegisterActivity
+import com.example.app_loja_de_bolos.databinding.ActivityRegisterBinding
+import com.example.app_loja_de_bolos.login.presentation.LoginActivity
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
-    private val viewModel: LoginViewModel by viewModel()
+    private lateinit var binding: ActivityRegisterBinding
+    private val viewModel: RegisterViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -40,39 +40,22 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.onViewCreated()
-
         with(binding) {
-            btnLogin.setOnClickListener {
-                viewModel.onLoginClicked()
-            }
-
             btnRegister.setOnClickListener {
-                viewModel.onCreateAccountClicked()
+                viewModel.onCreateAccountClicked(getNameText(), getEmailText(), getPasswordText())
             }
-
-//            btnRecoverPassword.setOnClickListener {
-//                viewModel.onRecoverPasswordClicked(getEmailText())
-//            }
         }
     }
 
-    private fun executeAction(action: LoginAction) {
-        when(action) {
-            LoginAction.NAVIGATE_HOME -> navigateHome()
-            LoginAction.NAVIGATE_REGISTER -> navigateRegister()
-            LoginAction.SHOW_ERROR_MSG -> showMessage("An error occurred. Try again.")
+    private fun executeAction(action: RegisterAction) {
+        when (action) {
+            RegisterAction.NAVIGATE_LOGIN -> navigateLogin()
+            RegisterAction.SHOW_ERROR_MSG -> showMessage("An error occurred. Try again.")
         }
     }
 
-    private fun navigateHome() {
-//        val intent = Intent(this, FactActivity::class.java)
-//        startActivity(intent)
-//        finish()
-    }
-
-    private fun navigateRegister() {
-        val intent = Intent(this, RegisterActivity::class.java)
+    private fun navigateLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -86,4 +69,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun getPasswordText() =
         binding.etPassword.text.toString()
+
+    private fun getNameText() =
+        binding.etName.text.toString()
 }

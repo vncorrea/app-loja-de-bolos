@@ -1,7 +1,7 @@
 package com.example.app_loja_de_bolos.login.data
 
-import com.example.app_loja_de_bolos.login.model.UserAuth
-import com.example.mvvmapplication.login.data.remote.LoginRemoteDatasource
+import com.example.app_loja_de_bolos.login.data.remote.LoginRemoteDatasource
+import com.example.app_loja_de_bolos.login.model.UserLogin
 
 class LoginRepositoryImpl(
     private val remoteDatasource: LoginRemoteDatasource
@@ -10,11 +10,7 @@ class LoginRepositoryImpl(
         return remoteDatasource.isSessionValid()
     }
 
-    override suspend fun createAccount(email: String, password: String): UserAuth {
-        return remoteDatasource.createAccount(email, password)
-    }
-
-    override suspend fun login(email: String, password: String): UserAuth {
+    override suspend fun login(email: String, password: String): UserLogin {
         return remoteDatasource.signin(email, password)
     }
 
