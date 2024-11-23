@@ -10,13 +10,23 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Botão de voltar -->
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voltar"
+            android:backgroundTint="#FF9800"
+            android:textColor="#000000" />
+
         <!-- Imagem do produto -->
         <ImageView
             android:id="@+id/productImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
-            android:src="sample_image" />
+            android:src="@drawable/sample_image" />
 
         <!-- Nome e descrição do produto -->
         <TextView

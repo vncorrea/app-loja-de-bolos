@@ -10,11 +10,21 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Botão de voltar -->
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voltar"
+            android:backgroundTint="#FF9800"
+            android:textColor="#000000" />
+
         <!-- Nome do Produto -->
         <TextView
             android:id="@+id/productTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="DETALHES DO PEDIDO"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -31,17 +41,19 @@
             android:textColor="#333333" />
 
         <!-- Opções de tamanho -->
-        <RadioGroup
-            android:id="@+id/sizeOptionsGroup"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="c">
 
             <RadioButton
                 android:id="@+id/sizeSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:text="Pequeno"
                 android:textSize="14sp"
                 android:textColor="#333333" />
@@ -50,6 +62,7 @@
                 android:id="@+id/sizeMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:text="Médio"
                 android:textSize="14sp"
                 android:textColor="#333333" />
@@ -61,8 +74,55 @@
                 android:text="Grande"
                 android:textSize="14sp"
                 android:textColor="#333333" />
-        </RadioGroup>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Adicionar calda de chocolate?"
+                android:textSize="14sp"
+                android:textColor="#333333" />
+
+            <Switch
+                android:id="@+id/chocolateSyrupSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:thumbTint="#FF9800"
+                android:trackTint="#FFC107" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Necessita de embalagem plástica?"
+                android:textSize="14sp"
+                android:textColor="#333333" />
+
+            <Switch
+                android:id="@+id/plasticPackagingSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:thumbTint="#FF9800"
+                android:trackTint="#FFC107" />
+        </LinearLayout>
         <!-- Campo de observações -->
         <EditText
             android:id="@+id/observationField"
@@ -120,8 +180,9 @@
                 android:layout_weight="1"
                 android:layout_marginStart="16dp"
                 android:text="Adicionar"
-                android:backgroundTint="#F44336"
+                android:backgroundTint="#FF9800"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
         </LinearLayout>
-    </LinearLayout
+    </LinearLayout>
+</ScrollView>
