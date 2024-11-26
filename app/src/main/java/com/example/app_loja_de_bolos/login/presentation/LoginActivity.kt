@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.app_loja_de_bolos.R
 import com.example.app_loja_de_bolos.databinding.ActivityLoginBinding
+import com.example.app_loja_de_bolos.home.presentation.HomeActivity
 import com.example.app_loja_de_bolos.recover_password.presentation.RecoverPasswordActivity
 import com.example.app_loja_de_bolos.register.presentation.RegisterActivity
 import kotlinx.coroutines.launch
@@ -45,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
 
         with(binding) {
             btnLogin.setOnClickListener {
-                viewModel.onLoginClicked()
+                viewModel.onLoginClicked(getEmailText(), getPasswordText())
             }
 
             btnRegister.setOnClickListener {
@@ -68,9 +69,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun navigateHome() {
-//        val intent = Intent(this, FactActivity::class.java)
-//        startActivity(intent)
-//        finish()
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun navigateRecoverPassword() {
@@ -81,7 +82,6 @@ class LoginActivity : AppCompatActivity() {
     private fun navigateRegister() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
-//        finish()
     }
 
     private fun showMessage(msg: String) {
