@@ -1,6 +1,7 @@
 package com.example.app_loja_de_bolos
 
 import android.app.Application
+import com.example.app_loja_de_bolos.home.di.homeModule
 import com.example.app_loja_de_bolos.login.di.loginModule
 import com.example.app_loja_de_bolos.recover_password.di.recoverPasswordModule
 import org.koin.android.ext.koin.androidContext
@@ -19,6 +20,7 @@ class MainApplication : Application() {
             modules(loginModule)
             modules(registerModule)
             modules(recoverPasswordModule)
+            modules(homeModule)
         }
     }
 }

@@ -25,9 +25,10 @@ class LoginViewModel(
         }
     }
 
-    fun onLoginClicked() {
+    fun onLoginClicked(emailText: String, passwordText: String) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
+                loginRepository.login(emailText, passwordText)
                 _uiAction.emit(LoginAction.NAVIGATE_HOME)
             }.onFailure { e ->
                 _uiAction.emit(LoginAction.SHOW_ERROR_MSG)
