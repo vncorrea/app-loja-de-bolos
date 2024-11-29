@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "672341787838",
+    "project_id": "app-loja-de-bolos",
+    "storage_bucket": "app-loja-de-bolos.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672341787838:android:0dd9593d1867b482bc4aef",
+        "android_client_info": {
+          "package_name": "com.example.app_loja_de_bolos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMZ7VoEIVEyaVRX8nCB5MP-CRJz5OFrlo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
