@@ -31,6 +31,10 @@ class CakeCategoryListViewModel(
         }
     }
 
+    fun onClickCakeCategory(category: String) {
+        _uiAction.value = CakeCategoryAction.NavigateToCakeList(category)
+    }
+
     fun resetUiAction() {
         _uiAction.value = null
     }

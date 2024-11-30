@@ -1,6 +1,8 @@
 package com.example.app_loja_de_bolos.cake_category_list.presentation
 
 import CakeCategoryAction
+import CakeCategoryListAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -12,7 +14,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.app_loja_de_bolos.R
+import com.example.app_loja_de_bolos.cake_category_list.model.CakeCategory
 import com.example.app_loja_de_bolos.databinding.ActivityCakeListCategoryBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,10 +31,9 @@ class CakeCategoryListActivity : AppCompatActivity() {
         binding = ActivityCakeListCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Configuração para comportamento com barras do sistema
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
@@ -56,7 +57,7 @@ class CakeCategoryListActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         adapter = CakeCategoryListAdapter(mutableListOf()) { category ->
-            Toast.makeText(this, "Categoria selecionada: $category", Toast.LENGTH_SHORT).show()
+            viewModel.onClickCakeCategory(category.name)
         }
 
         binding.rvCakeCategories.layoutManager = LinearLayoutManager(this)
@@ -67,14 +68,22 @@ class CakeCategoryListActivity : AppCompatActivity() {
         when (action) {
             is CakeCategoryAction.UpdateCategoryList -> updateCategories(action.categories)
             CakeCategoryAction.ShowErrorMsg -> showMessage("Erro ao carregar categorias.")
+            is CakeCategoryAction.NavigateToCakeList -> navigateToCakeList(action.category);
             else -> {
                 Log.d("CakeListActivity", "Ação não reconhecida.")
             }
         }
     }
 
-    private fun updateCategories(categories: List<String>) {
-        Log.d("CakeListActivity", "Updated categories: $categories")
+    private fun navigateToCakeList(category: String) {
+        val intent = Intent(this, CakeCategoryListActivity::class.java).apply {
+            putExtra("category", category)
+        }
+
+        startActivity(intent)
+    }
+
+    private fun updateCategories(categories: List<CakeCategory>) {
         adapter.updateData(categories)
     }
 
