@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@color/light_ldb">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,43 +12,37 @@
         android:padding="16dp">
 
         <!-- Botão de voltar -->
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Voltar"
-            android:backgroundTint="#FF9800"
-            android:textColor="#000000" />
 
-        <!-- Imagem do produto -->
+        <!-- Imagem do bolo -->
         <ImageView
-            android:id="@+id/productImage"
+            android:id="@+id/cakeImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
             android:src="@drawable/sample_image" />
 
-        <!-- Nome e descrição do produto -->
+        <!-- Nome e descrição do bolo -->
         <TextView
-            android:id="@+id/productName"
+            android:id="@+id/cakeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Nome do Produto"
+            android:text="Nome do Bolo"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/dark_ldb" />
 
         <TextView
-            android:id="@+id/productDescription"
+            android:id="@+id/cakeDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Descrição detalhada do produto."
+            android:text="Descrição detalhada do bolo."
             android:textSize="14sp"
-            android:textColor="#666666" />
+            android:textColor="@color/dark_ldb" />
 
-        <!-- Preços do produto -->
+        <!-- Preços do bolo -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +50,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/productPrice"
+                android:id="@+id/cakePrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="R$ 49,90"
@@ -64,7 +59,7 @@
                 android:textColor="#4CAF50" />
 
             <TextView
-                android:id="@+id/productOldPrice"
+                android:id="@+id/cakeOldPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -83,24 +78,24 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:id="@+id/productRating"
+                android:id="@+id/cakeRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4.2 ★"
                 android:textSize="14sp"
-                android:textColor="#FF9800" />
+                android:textColor="@color/dark_ldb" />
 
             <TextView
-                android:id="@+id/productDeliveryTime"
+                android:id="@+id/cakeDeliveryTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="40-50 min"
                 android:textSize="14sp"
-                android:textColor="#666666" />
+                android:textColor="@color/dark_ldb" />
 
             <TextView
-                android:id="@+id/productDeliveryFee"
+                android:id="@+id/cakeDeliveryFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -115,8 +110,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Prosseguir"
-            android:backgroundTint="#FF9800"
-            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/dark_ldb"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
     </LinearLayout>

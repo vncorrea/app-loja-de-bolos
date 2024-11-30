@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#FFF4E1">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,13 +11,6 @@
         android:padding="16dp">
 
         <!-- Botão de voltar -->
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Voltar"
-            android:backgroundTint="#FF9800"
-            android:textColor="#000000" />
 
         <!-- Nome do Produto -->
         <TextView
@@ -40,41 +33,85 @@
             android:textStyle="bold"
             android:textColor="#333333" />
 
-        <!-- Opções de tamanho -->
-
+        <!-- Opções de tamanho (vertical) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:gravity="c">
+            android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/sizeSmall"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:text="Pequeno"
-                android:textSize="14sp"
-                android:textColor="#333333" />
+                android:orientation="horizontal"
+                android:gravity="start|center_vertical">
 
-            <RadioButton
-                android:id="@+id/sizeMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:text="Médio"
-                android:textSize="14sp"
-                android:textColor="#333333" />
+                <RadioButton
+                    android:id="@+id/sizeMini"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="Mini"
+                    android:textSize="14sp"
+                    android:textColor="#333333" />
 
-            <RadioButton
-                android:id="@+id/sizeLarge"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R$ 20,00"
+                    android:textSize="14sp"
+                    android:layout_margin="11dp"
+                    android:textColor="#333333" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Grande"
-                android:textSize="14sp"
-                android:textColor="#333333" />
+                android:orientation="horizontal"
+                android:gravity="start|center_vertical">
+
+                <RadioButton
+                    android:id="@+id/sizeMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="Médio"
+                    android:textSize="14sp"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R$ 30,00"
+                    android:textSize="14sp"
+                    android:textColor="#333333" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start|center_vertical">
+
+                <RadioButton
+                    android:id="@+id/sizeLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Grande"
+                    android:textSize="14sp"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R$ 40,00"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:layout_marginStart="9dp" />
+            </LinearLayout>
         </LinearLayout>
+
+        <!-- Outras opções e campos continuam iguais... -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -123,6 +160,7 @@
                 android:thumbTint="#FF9800"
                 android:trackTint="#FFC107" />
         </LinearLayout>
+
         <!-- Campo de observações -->
         <EditText
             android:id="@+id/observationField"
@@ -149,7 +187,7 @@
                 android:layout_height="48dp"
                 android:text="-"
                 android:textSize="20sp"
-                android:backgroundTint="#F0F0F0"
+                android:backgroundTint="@color/dark_ldb"
                 android:textColor="#333333" />
 
             <!-- Quantidade total -->
@@ -169,8 +207,8 @@
                 android:layout_height="48dp"
                 android:text="+"
                 android:textSize="20sp"
-                android:backgroundTint="#F0F0F0"
-                android:textColor="#333333" />
+                android:backgroundTint="@color/dark_ldb"
+                android:textColor="#FFFFF" />
 
             <!-- Botão Adicionar ao carrinho -->
             <Button
