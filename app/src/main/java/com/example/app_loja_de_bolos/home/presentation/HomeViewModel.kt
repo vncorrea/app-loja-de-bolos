@@ -1,10 +1,15 @@
 package com.example.app_loja_de_bolos.home.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.app_loja_de_bolos.home.data.HomeRepository
+import com.example.app_loja_de_bolos.login.presentation.LoginAction
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val homeRepository: HomeRepository
@@ -22,6 +27,12 @@ class HomeViewModel(
     }
 
     fun onCakesListClicked(type: String) {
-        _uiAction.tryEmit(HomeAction.NavigateCakesList(type))
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                _uiAction.emit(HomeAction.NavigateCakesList(type))
+            }.onFailure { e ->
+                Log.e("CAKE LIST CLICK", e.message ?: "unknown", e)
+            }
+        }
     }
 }

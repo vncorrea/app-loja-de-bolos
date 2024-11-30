@@ -40,7 +40,6 @@ android {
 }
 
 dependencies {
-
     // AndroidX
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
@@ -54,6 +53,7 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4") // Suporte a Firebase Tasks
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -63,9 +63,9 @@ dependencies {
     implementation("io.insert-koin:koin-android:3.4.2")
 
     // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
-    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-firestore-ktx") // Extensão Firestore com suporte Kotlin
 
     // Testing
     testImplementation("junit:junit:4.13.2")

@@ -35,6 +35,9 @@
 
         <activity android:name=".home.presentation.HomeActivity"
             android:exported="true"></activity>
+
+        <activity android:name=".cake_category_list.presentation.CakeCategoryListActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

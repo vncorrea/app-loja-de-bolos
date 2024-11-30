@@ -2,6 +2,7 @@ package com.example.app_loja_de_bolos.home.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.app_loja_de_bolos.R
+import com.example.app_loja_de_bolos.cake_category_list.presentation.CakeCategoryListActivity
 import com.example.app_loja_de_bolos.databinding.ActivityHomeBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -43,10 +45,12 @@ class HomeActivity : AppCompatActivity() {
 
         with(binding) {
             btnBolos.setOnClickListener {
-                viewModel.onCakesListClicked("bolos")
+                Log.d("HomeActivity", "Button clicked: bolos")
+                viewModel.onCakesListClicked("bolos_normais")
             }
 
             btnBolosEspeciais.setOnClickListener {
+                Log.d("HomeActivity", "Button clicked: bolos_especiais")
                 viewModel.onCakesListClicked("bolos_especiais")
             }
         }
@@ -61,10 +65,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun navigateCakesList(type: String) {
-//        val intent = Intent(this, CakesListActivity::class.java).apply {
-//            putExtra("cakeType", type) // Adiciona o parâmetro ao Intent
-//        }
-//        startActivity(intent)
+        val intent = Intent(this, CakeCategoryListActivity::class.java).apply {
+            putExtra("cakeType", type) // Adiciona o parâmetro ao Intent
+        }
+        Log.d("HomeActivity", "navigateCakesList: $type")
+        startActivity(intent)
     }
 
     private fun navigatePromotions() {
