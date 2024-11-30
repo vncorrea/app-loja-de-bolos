@@ -1,5 +1,4 @@
-package com.example.app_loja_de_bolos.cake_category_list.presentation
-
-enum class CakeCategoryListAction {
-    SHOW_ERROR_MSG
+sealed class CakeCategoryAction {
+    data class UpdateCategoryList(val categories: List<String>) : CakeCategoryAction()
+    object ShowErrorMsg : CakeCategoryAction()
 }

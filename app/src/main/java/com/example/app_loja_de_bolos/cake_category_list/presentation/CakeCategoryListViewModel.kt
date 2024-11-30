@@ -1,5 +1,6 @@
 package com.example.app_loja_de_bolos.cake_category_list.presentation
 
+import CakeCategoryAction
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,18 +16,17 @@ class CakeCategoryListViewModel(
     private val _categories = MutableStateFlow<List<String>>(emptyList())
     val categories: StateFlow<List<String>> = _categories
 
-    private val _uiAction = MutableStateFlow<String?>(null)
-    val uiAction: StateFlow<String?> = _uiAction
+    private val _uiAction = MutableStateFlow<CakeCategoryAction?>(null)
+    val uiAction: StateFlow<CakeCategoryAction?> = _uiAction
 
     fun fetchCakeCategories(cakeType: String?) {
         viewModelScope.launch {
             try {
-                val categoriesList = cakeCategoryListRepository.getCakeCategories(cakeType)
-                Log.d("CakeListViewModel", "Fetched categories: $categoriesList")
-                _categories.value = categoriesList
+                val categories = cakeCategoryListRepository.getCakeCategories(cakeType)
+                _uiAction.emit(CakeCategoryAction.UpdateCategoryList(categories))
             } catch (e: Exception) {
-                Log.e("CakeListViewModel", "Error fetching categories", e)
-                _uiAction.value = "Erro ao buscar categorias"
+                Log.e("CakeCategoryListViewModel", "Error fetching categories", e)
+                _uiAction.emit(CakeCategoryAction.ShowErrorMsg)
             }
         }
     }
