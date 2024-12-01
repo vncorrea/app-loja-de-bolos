@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.app_loja_de_bolos.cake_category_list.model.CakeCategory
+import com.example.app_loja_de_bolos.cake_list.presentation.CakeListAction
 import com.example.app_loja_de_bolos.cake_list.presentation.CakeListActivity
 import com.example.app_loja_de_bolos.databinding.ActivityCakeListCategoryBinding
 import kotlinx.coroutines.launch
@@ -70,9 +71,20 @@ class CakeCategoryListActivity : AppCompatActivity() {
             is CakeCategoryAction.UpdateCategoryList -> updateCategories(action.categories)
             CakeCategoryAction.ShowErrorMsg -> showMessage("Erro ao carregar categorias.")
             is CakeCategoryAction.NavigateToCakeList -> navigateToCakeList(action.category);
+            is CakeCategoryAction.UiState -> handleLoadingState(action.isLoading)
             else -> {
                 Log.d("CakeListActivity", "Ação não reconhecida.")
             }
+        }
+    }
+
+    private fun handleLoadingState(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = android.view.View.VISIBLE
+            binding.rvCakeCategories.visibility = android.view.View.GONE
+        } else {
+            binding.progressBar.visibility = android.view.View.GONE
+            binding.rvCakeCategories.visibility = android.view.View.VISIBLE
         }
     }
 
@@ -83,8 +95,6 @@ class CakeCategoryListActivity : AppCompatActivity() {
             putExtra("cakeCategory", category)
             putExtra("cakeType", cakeType)
         }
-
-        Log.d("teste", category)
 
         startActivity(intent)
     }

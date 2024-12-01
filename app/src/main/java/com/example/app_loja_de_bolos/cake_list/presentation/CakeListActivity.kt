@@ -65,11 +65,23 @@ class CakeListActivity : AppCompatActivity() {
         binding.rvCakes.adapter = adapter
     }
 
+    private fun handleLoadingState(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = android.view.View.VISIBLE
+            binding.rvCakes.visibility = android.view.View.GONE
+        } else {
+            binding.progressBar.visibility = android.view.View.GONE
+            binding.rvCakes.visibility = android.view.View.VISIBLE
+        }
+    }
+
     private fun executeAction(action: CakeListAction) {
         when (action) {
             is CakeListAction.UpdateCakeList -> updateCakeList(action.cakes)
             CakeListAction.ShowErrorMsg -> showMessage("Erro ao carregar categorias.")
             is CakeListAction.NavigateToCakeDetails -> navigateToCakeDetails(action.cake);
+            is CakeListAction.UiState -> handleLoadingState(action.isLoading)
+
             else -> {
                 Log.d("CakeListActivity", "Ação não reconhecida.")
             }
