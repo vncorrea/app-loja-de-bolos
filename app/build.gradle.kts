@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.androidx.runner)
     implementation(libs.play.services.basement)
     implementation(libs.play.services.basement)
+    implementation(libs.play.services.basement)
 
     // Testing
     testImplementation("junit:junit:4.13.2")
