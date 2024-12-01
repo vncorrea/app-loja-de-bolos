@@ -30,7 +30,12 @@ class CakeDetailsViewModel(
         }
     }
 
-    fun onCakeExtraClicked(cakeDetails: CakeDetails) {
-        _uiAction.value = CakeDetailsAction.NAVIGATE_CAKE_EXTRA
+   fun onAddToCartButtonClicked() {
+        viewModelScope.launch {
+            _cakeDetails.value?.let { cakeDetails ->
+                cakeDetailsRepository.addItemToCart(cakeDetails)
+                _uiAction.value = CakeDetailsAction.SHOW_SUCCESS_MSG
+            }
+        }
     }
 }

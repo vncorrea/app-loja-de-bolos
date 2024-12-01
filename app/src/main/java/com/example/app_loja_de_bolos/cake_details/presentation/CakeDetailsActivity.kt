@@ -16,10 +16,8 @@ import com.example.app_loja_de_bolos.login.presentation.LoginAction
 import kotlinx.coroutines.launch
 
 class CakeDetailsActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityCakeDetailsBinding
     private val viewModel: CakeDetailsViewModel by viewModel()
-
 
     private var basePrice = 0.0
     private var currentPrice = 0.0
@@ -44,35 +42,29 @@ class CakeDetailsActivity : AppCompatActivity() {
             return
         }
 
-
         viewModel.fetchCakeDetails(cakeId, cakeType, cakeCategory)
 
         observeViewModel()
-
 
         setupListeners()
     }
 
     private fun setupListeners() {
         with(binding) {
-
             chocolateSyrupSwitch.setOnCheckedChangeListener { _, isChecked ->
                 hasSyrup = isChecked
                 updateTotalPrice()
             }
-
 
             plasticPackagingSwitch.setOnCheckedChangeListener { _, isChecked ->
                 hasPackaging = isChecked
                 updateTotalPrice()
             }
 
-
             increaseTotalQuantity.setOnClickListener {
                 totalQuantity++
                 updateTotalPrice()
             }
-
 
             decreaseTotalQuantity.setOnClickListener {
                 if (totalQuantity > 1) {
@@ -86,18 +78,26 @@ class CakeDetailsActivity : AppCompatActivity() {
                     ).show()
                 }
             }
+
+            addToCartButton.setOnClickListener {
+                getFormattedCurrentPrice()
+                viewModel.onAddToCartButtonClicked()
+                finish();
+            }
         }
     }
 
-    private fun updateTotalPrice() {
+    fun getFormattedCurrentPrice(): String {
+        return String.format("%.2f", currentPrice).replace(",", ".")
+    }
 
+    private fun updateTotalPrice() {
         val extras = calculateExtras()
         currentPrice = (basePrice + extras) * totalQuantity
         updateQuantityAndPrice()
     }
 
     private fun calculateExtras(): Double {
-
         var extras = 0.0
         if (hasSyrup) extras += extraSyrupPrice
         if (hasPackaging) extras += extraPackagingPrice
@@ -105,18 +105,17 @@ class CakeDetailsActivity : AppCompatActivity() {
     }
 
     private fun updateQuantityAndPrice() {
-
         with(binding) {
             totalQuantityText.text = totalQuantity.toString()
             cakePrice.text = formatToCurrency(currentPrice)
         }
     }
 
+
     private fun observeViewModel() {
         lifecycleScope.launch {
             viewModel.cakeDetails.collect { cakeDetails ->
                 cakeDetails?.let {
-
                     basePrice = extractPrice(it.value)
                     currentPrice = basePrice
                     showCakeDetails(it)
