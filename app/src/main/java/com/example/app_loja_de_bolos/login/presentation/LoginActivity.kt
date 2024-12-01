@@ -46,7 +46,16 @@ class LoginActivity : AppCompatActivity() {
 
         with(binding) {
             btnLogin.setOnClickListener {
-                viewModel.onLoginClicked(getEmailText(), getPasswordText())
+                val email = getEmailText()
+                val password = getPasswordText()
+
+                if (!isValidEmail(email)) {
+                    showMessage("Email inválido. Verifique o formato.")
+                } else if (password.isEmpty() || password.length < 6) {
+                    showMessage("Senha deve conter pelo menos 6 caracteres.")
+                } else {
+                    viewModel.onLoginClicked(email, password)
+                }
             }
 
             btnRegister.setOnClickListener {
@@ -93,4 +102,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun getPasswordText() =
         binding.etPassword.text.toString()
+
+    private fun isValidEmail(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
 }

@@ -2,6 +2,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.app_loja_de_bolos.cake_category_list.model.CakeCategory
 import com.example.app_loja_de_bolos.databinding.ActivityCakeListCategoryItemBinding
 
@@ -38,6 +39,14 @@ class CakeCategoryListAdapter(
         fun bind(category: CakeCategory) {
             Log.d("CakeCategoryListAdapter", "Binding category: $category")
             binding.tvCategoryName.text = category.formattedName
+
+            Glide.with(binding.root.context)
+                .load(category.imageUrl)
+//                .placeholder(R.drawable.placeholder)
+//                .error(R.drawable.error_image)
+                .into(binding.ivCategoryImage)
+
+
             binding.root.setOnClickListener {
                 onCategoryClicked(category)
             }

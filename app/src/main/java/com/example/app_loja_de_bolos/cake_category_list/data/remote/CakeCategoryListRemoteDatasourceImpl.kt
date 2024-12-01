@@ -3,6 +3,7 @@ package com.example.app_loja_de_bolos.cake_category_list.data.remote
 import android.util.Log
 import com.example.app_loja_de_bolos.cake_category_list.model.CakeCategory
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 
 class CakeCategoryListRemoteDatasourceImpl(
@@ -37,13 +38,26 @@ class CakeCategoryListRemoteDatasourceImpl(
         }
     }
 
-    private fun mapToCakeCategory(categorias: List<String>): List<CakeCategory> {
+    private suspend fun mapToCakeCategory(categorias: List<String>): List<CakeCategory> {
         return categorias.map { category ->
             CakeCategory(
                 id = null,
                 name = formatToDatabaseCakeCategoryName(category),
-                formattedName = formatToUserCakeCategoryName(category)
+                formattedName = formatToUserCakeCategoryName(category),
+                imageUrl = getImageUrl(formatToDatabaseCakeCategoryName(category))
             )
+        }
+    }
+
+    private suspend fun getImageUrl(category: String): String {
+        val storageReference = FirebaseStorage.getInstance().reference
+        val imageReference = storageReference.child("$category.png")
+
+        return try {
+            imageReference.downloadUrl.await().toString()
+        } catch (e: Exception) {
+            Log.e("CakeCategoryList", "Erro ao buscar URL da imagem para $category: ${e.message}", e)
+            ""
         }
     }
 
