@@ -84,15 +84,114 @@
                 android:textColor="@color/dark_ldb" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/proceedButton"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="Prosseguir"
-            android:backgroundTint="@color/dark_ldb"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Adicionar calda de chocolate?"
+                android:textSize="14sp"
+                android:textColor="#333333" />
+
+            <Switch
+                android:id="@+id/chocolateSyrupSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:thumbTint="#FF9800"
+                android:trackTint="#FFC107" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Necessita de embalagem plástica?"
+                android:textSize="14sp"
+                android:textColor="#333333" />
+
+            <Switch
+                android:id="@+id/plasticPackagingSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:thumbTint="#FF9800"
+                android:trackTint="#FFC107" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Botão de diminuir quantidade total -->
+            <!-- Botão de diminuir quantidade total -->
+            <!-- Botão de diminuir quantidade total -->
+            <Button
+                android:id="@+id/decreaseTotalQuantity"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/dark_ldb"
+                android:elevation="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <!-- Quantidade total -->
+            <TextView
+                android:id="@+id/totalQuantityText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Botão de aumentar quantidade total -->
+            <Button
+                android:id="@+id/increaseTotalQuantity"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/dark_ldb"
+                android:elevation="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <!-- Botão Adicionar ao carrinho -->
+            <Button
+                android:id="@+id/addToCartOptionsButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF9800"
+                android:text="Adicionar"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

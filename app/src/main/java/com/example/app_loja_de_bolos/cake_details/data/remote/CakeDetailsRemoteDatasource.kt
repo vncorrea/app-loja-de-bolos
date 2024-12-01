@@ -8,4 +8,6 @@ interface CakeDetailsRemoteDatasource {
         cakeType: String,
         cakeCategory: String
     ): CakeDetails?
+    suspend fun addItemToCart(item: CakeDetails): Boolean
+
 }

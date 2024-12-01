@@ -15,18 +15,22 @@ class CakeDetailsViewModel(
     private val _cakeDetails = MutableStateFlow<CakeDetails?>(null)
     val cakeDetails: StateFlow<CakeDetails?> = _cakeDetails
 
-    private val _action = MutableStateFlow<CakeDetailsAction?>(null)
-    val action: StateFlow<CakeDetailsAction?> = _action
+    private val _uiAction = MutableStateFlow<CakeDetailsAction?>(null)
+    val uiAction: StateFlow<CakeDetailsAction?> = _uiAction
 
     fun fetchCakeDetails(cakeId: String, cakeType: String, cakeCategory: String) {
         viewModelScope.launch {
             try {
-                val cakeDetails = cakeDetailsRepository.fetchCakeDetails(cakeId, cakeType, cakeCategory)
+                val cakeDetails =
+                    cakeDetailsRepository.fetchCakeDetails(cakeId, cakeType, cakeCategory)
                 _cakeDetails.value = cakeDetails
-                _action.value = cakeDetails?.let { CakeDetailsAction.ShowDetails(it) }
             } catch (e: Exception) {
-                _action.value = CakeDetailsAction.ShowError
+                _uiAction.value = CakeDetailsAction.SHOW_ERROR_MSG
             }
         }
+    }
+
+    fun onCakeExtraClicked(cakeDetails: CakeDetails) {
+        _uiAction.value = CakeDetailsAction.NAVIGATE_CAKE_EXTRA
     }
 }
