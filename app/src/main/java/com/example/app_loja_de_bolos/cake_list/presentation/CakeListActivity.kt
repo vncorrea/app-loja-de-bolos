@@ -1,6 +1,5 @@
 package com.example.app_loja_de_bolos.cake_list.presentation
 
-import CakeCategoryListAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.app_loja_de_bolos.cake_details.presentation.CakeDetailsActivity
 import com.example.app_loja_de_bolos.cake_list.model.Cake
 import com.example.app_loja_de_bolos.databinding.ActivityCakeListBinding
 import kotlinx.coroutines.launch
@@ -89,11 +89,16 @@ class CakeListActivity : AppCompatActivity() {
     }
 
     private fun navigateToCakeDetails(cake: Cake) {
-//        val intent = Intent(this, Cake::class.java).apply {
-//            putExtra("category", category)
-//        }
+        val cakeType = intent.getStringExtra("cakeType")
+        val cakeCategory = intent.getStringExtra("cakeCategory")
 
-//        startActivity(intent)
+        val intent = Intent(this, CakeDetailsActivity::class.java).apply {
+            putExtra("cakeId", cake.id)
+            putExtra("cakeCategory", cakeCategory)
+            putExtra("cakeType", cakeType)
+        }
+
+        startActivity(intent)
     }
 
      fun updateCakeList(cakes: List<Cake>) {

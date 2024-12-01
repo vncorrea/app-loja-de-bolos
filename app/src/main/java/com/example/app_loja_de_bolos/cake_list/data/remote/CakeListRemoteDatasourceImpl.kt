@@ -35,6 +35,7 @@ class CakeListRemoteDatasourceImpl(
     private suspend fun mapToCake(querySnapshot: com.google.firebase.firestore.QuerySnapshot): List<Cake> {
         return querySnapshot.documents.map { document ->
             Cake(
+                id = document.id,
                 name = document.get("name") as? String ?: "",
                 description = document.get("description") as? String ?: "",
                 value = formatToUserValue(document.get("value") as? String ?: "R$ 0,00"),

@@ -1,41 +1,67 @@
 package com.example.app_loja_de_bolos.cake_details.presentation
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.app_loja_de_bolos.R
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.example.app_loja_de_bolos.cake_details.model.CakeDetails
+import com.example.app_loja_de_bolos.databinding.ActivityCakeDetailsBinding
+import kotlinx.coroutines.launch
 
 class CakeDetailsActivity : AppCompatActivity() {
 
-    private val viewModel: CakeDetailsViewModel by lazy {
-        ViewModelProvider(this).get(CakeDetailsViewModel::class.java)
-    }
+    private lateinit var binding: ActivityCakeDetailsBinding
+    private val viewModel: CakeDetailsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.product_details)
+        binding = ActivityCakeDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val cakeId = intent.getStringExtra("CAKE_NAME") // Recebendo o ID do bolo
+        val cakeCategory = intent.getStringExtra("cakeCategory")
+        val cakeType = intent.getStringExtra("cakeType")
+        val cakeId = intent.getStringExtra("cakeId")
 
-        cakeId?.let {
-            viewModel.fetchCakeDetails(it)
+        if (cakeId.isNullOrEmpty() || cakeType.isNullOrEmpty() || cakeCategory.isNullOrEmpty()) {
+            Toast.makeText(this, "Erro ao carregar detalhes do bolo.", Toast.LENGTH_SHORT).show()
+            finish()
+            return
         }
 
-        viewModel.cakeDetails.observe(this, Observer { action ->
-            when (action) {
-                is CakeDetailsAction.ShowDetails -> showCakeDetails(action.cakeDetails)
-                is CakeDetailsAction.ShowError -> showError()
+        viewModel.fetchCakeDetails(cakeId, cakeType, cakeCategory)
+
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        lifecycleScope.launch {
+            viewModel.cakeDetails.collect { cakeDetails ->
+                cakeDetails?.let {
+                    showCakeDetails(it)
+                }
             }
-        })
+        }
     }
 
     private fun showCakeDetails(cakeDetails: CakeDetails) {
-        // Exibir detalhes do bolo na UI
+        Log.d("CakeDetailsActivity", "showCakeDetails: $cakeDetails")
+        with(binding) {
+            cakeName.text = cakeDetails.name
+            cakeDescription.text = cakeDetails.description
+            cakePrice.text = cakeDetails.value
+
+            Glide.with(cakeImage.context)
+                .load(cakeDetails.imageUrl)
+//                .placeholder(R.drawable.placeholder) // Imagem temporária
+//                .error(R.drawable.error_image) // Imagem em caso de erro
+                .into(cakeImage)
+        }
     }
 
     private fun showError() {
-        // Exibir erro na UI
+        Toast.makeText(this, "Erro ao carregar detalhes do bolo.", Toast.LENGTH_SHORT).show()
     }
 }

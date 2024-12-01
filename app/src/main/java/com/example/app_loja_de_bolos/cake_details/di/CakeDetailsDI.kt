@@ -1,47 +1,24 @@
 package com.example.app_loja_de_bolos.cake_details.di
 
-class CakeDetailsDI {
-    object CakeDetailsDI {
+import com.example.app_loja_de_bolos.cake_details.data.CakeDetailsRepository
+import com.example.app_loja_de_bolos.cake_details.data.CakeDetailsRepositoryImpl
+import com.example.app_loja_de_bolos.cake_details.data.remote.CakeDetailsRemoteDatasource
+import com.example.app_loja_de_bolos.cake_details.data.remote.CakeDetailsRemoteDatasourceImpl
+import com.example.app_loja_de_bolos.cake_details.presentation.CakeDetailsViewModel
+import com.google.firebase.firestore.FirebaseFirestore
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
-        private val remoteDataSource: CakeDetailsRemoteDataSource = CakeDetailsRemoteDataSourceImpl(ApiService.create())
-
-        private fun CakeDetailsRemoteDataSourceImpl(create: Any): CakeDetailsRemoteDataSource {
-
-        }
-
-        val repository: CakeDetailsRepository<Any?> = CakeDetailsRepository(remoteDataSource)
+val cakeDetailsModule = module {
+    factory<CakeDetailsRemoteDatasource> {
+        CakeDetailsRemoteDatasourceImpl(firebaseFirestore = FirebaseFirestore.getInstance())
     }
 
-    class CakeDetailsRepository<CakeDetails> {
-        fun fetchCakeDetails(cakeId: String): CakeDetails {
-
-        }
-
+    factory<CakeDetailsRepository> {
+        CakeDetailsRepositoryImpl(remoteDatasource = get())
     }
 
-    class ApiService {
-        fun getTamanhos(): Any {
-
-        }
-
-        fun getCaldaChocolate(): Boolean {
-
-        }
-
-        fun getEmbalagemPlastica(): Boolean {
-
-        }
-
-        companion object {
-            fun create(): Any {
-
-            }
-        }
-
+    viewModel {
+        CakeDetailsViewModel(cakeDetailsRepository = get())
     }
-
-}
-
-class CakeDetailsRemoteDataSource {
-
 }

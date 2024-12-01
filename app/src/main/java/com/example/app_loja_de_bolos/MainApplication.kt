@@ -2,6 +2,7 @@ package com.example.app_loja_de_bolos
 
 import android.app.Application
 import com.example.app_loja_de_bolos.cake_category_list.di.cakeCategoryListModule
+import com.example.app_loja_de_bolos.cake_details.di.cakeDetailsModule
 import com.example.app_loja_de_bolos.cake_list.di.cakeListModule
 import com.example.app_loja_de_bolos.home.di.homeModule
 import com.example.app_loja_de_bolos.login.di.loginModule
@@ -25,6 +26,7 @@ class MainApplication : Application() {
             modules(homeModule)
             modules(cakeCategoryListModule)
             modules(cakeListModule)
+            modules(cakeDetailsModule)
         }
     }
 }

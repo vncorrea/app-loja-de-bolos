@@ -19,8 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/sample_image" />
+            android:scaleType="centerCrop" />
 
         <!-- Nome e descrição do bolo -->
         <TextView
@@ -57,16 +56,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#4CAF50" />
-
-            <TextView
-                android:id="@+id/cakeOldPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="R$ 64,90"
-                android:textSize="16sp"
-                android:paintFlags="strikeThruText"
-                android:textColor="#999999" />
         </LinearLayout>
 
         <!-- Avaliação, Tempo de Entrega, Taxa de Entrega -->
@@ -81,7 +70,7 @@
                 android:id="@+id/cakeRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4.2 ★"
+                android:text="4.8 ★"
                 android:textSize="14sp"
                 android:textColor="@color/dark_ldb" />
 
@@ -93,22 +82,13 @@
                 android:text="40-50 min"
                 android:textSize="14sp"
                 android:textColor="@color/dark_ldb" />
-
-            <TextView
-                android:id="@+id/cakeDeliveryFee"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Grátis"
-                android:textSize="14sp"
-                android:textColor="#4CAF50" />
         </LinearLayout>
 
         <Button
             android:id="@+id/proceedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="36dp"
             android:text="Prosseguir"
             android:backgroundTint="@color/dark_ldb"
             android:textColor="@color/white"
