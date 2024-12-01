@@ -65,7 +65,11 @@ dependencies {
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
-    implementation("com.google.firebase:firebase-firestore-ktx") // Extensão Firestore com suporte Kotlin
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation(libs.firebase.storage.ktx) // Extensão Firestore com suporte Kotlin
+
+    //Glide
+    implementation("com.github.bumptech.glide:glide:4.12.0")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
