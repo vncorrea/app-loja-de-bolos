@@ -6,4 +6,5 @@ data class Cake(
     val value : String = "",
     val formattedValue : String = "",
     val description : String = "",
+    val imageUrl : String = ""
 )

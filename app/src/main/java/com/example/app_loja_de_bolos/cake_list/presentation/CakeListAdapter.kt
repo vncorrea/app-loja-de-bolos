@@ -1,8 +1,11 @@
 package com.example.app_loja_de_bolos.cake_list.presentation
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.app_loja_de_bolos.R
 import com.example.app_loja_de_bolos.cake_list.model.Cake
 import com.example.app_loja_de_bolos.databinding.ActivityCakeListItemBinding
 
@@ -40,6 +43,15 @@ class CakeListAdapter(
             binding.tvNome.text = cake.formattedName
             binding.tvDescricao.text = cake.description
             binding.tvPreco.text = cake.value
+
+            Log.d("CakeListAdapter", "bind: ${cake.imageUrl}")
+
+            Glide.with(binding.root.context)
+                .load(cake.imageUrl)
+//                .placeholder(R.drawable.placeholder)
+//                .error(R.drawable.error_image)
+                .into(binding.ivBolo)
+
             binding.root.setOnClickListener {
                 onCakeClicked(cake)
             }

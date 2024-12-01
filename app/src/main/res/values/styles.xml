@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RoundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="CustomTextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/dark_ldb</item>
+        <item name="boxStrokeErrorColor">@color/dark_ldb</item>
+        <item name="hintTextColor">@color/dark_ldb</item>
+        <item name="android:textColor">@color/dark_ldb</item>
+        <item name="android:colorControlNormal">@color/dark_ldb</item>
+    </style>
+</resources>
