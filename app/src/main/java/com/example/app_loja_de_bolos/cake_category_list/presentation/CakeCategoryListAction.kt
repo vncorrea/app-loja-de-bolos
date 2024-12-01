@@ -1,5 +1,7 @@
-package com.example.app_loja_de_bolos.cake_category_list.presentation
+import com.example.app_loja_de_bolos.cake_category_list.model.CakeCategory
 
-enum class CakeCategoryListAction {
-    SHOW_ERROR_MSG
+sealed class CakeCategoryAction {
+    data class UpdateCategoryList(val categories: List<CakeCategory>) : CakeCategoryAction()
+    object ShowErrorMsg : CakeCategoryAction()
+    data class NavigateToCakeList(val category: String) : CakeCategoryAction()
 }

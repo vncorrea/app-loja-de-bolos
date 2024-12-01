@@ -1,6 +1,5 @@
-package com.example.app_loja_de_bolos.cake_category_list.presentation
+package com.example.app_loja_de_bolos.cake_list.presentation
 
-import CakeCategoryAction
 import CakeCategoryListAdapter
 import android.content.Intent
 import android.os.Bundle
@@ -14,22 +13,22 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.app_loja_de_bolos.cake_category_list.model.CakeCategory
-import com.example.app_loja_de_bolos.cake_list.presentation.CakeListActivity
-import com.example.app_loja_de_bolos.databinding.ActivityCakeListCategoryBinding
+import com.example.app_loja_de_bolos.cake_list.model.Cake
+import com.example.app_loja_de_bolos.databinding.ActivityCakeListBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CakeCategoryListActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityCakeListCategoryBinding
-    private val viewModel: CakeCategoryListViewModel by viewModel()
-    private lateinit var adapter: CakeCategoryListAdapter
+class CakeListActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityCakeListBinding
+    private val viewModel: CakeListViewModel by viewModel()
+    private lateinit var adapter: CakeListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityCakeListCategoryBinding.inflate(layoutInflater)
+        binding = ActivityCakeListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { view, insets ->
@@ -41,6 +40,7 @@ class CakeCategoryListActivity : AppCompatActivity() {
         setupRecyclerView()
 
         val cakeType = intent.getStringExtra("cakeType")
+        val cakeCategory = intent.getStringExtra("cakeCategory")
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -53,44 +53,39 @@ class CakeCategoryListActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.fetchCakeCategories(cakeType)
+        viewModel.fetchCakeList(cakeType, cakeCategory)
     }
 
     private fun setupRecyclerView() {
-        adapter = CakeCategoryListAdapter(mutableListOf()) { category ->
-            viewModel.onClickCakeCategory(category.name)
+        adapter = CakeListAdapter(mutableListOf()) { cake ->
+            viewModel.onClickCake(cake)
         }
 
-        binding.rvCakeCategories.layoutManager = LinearLayoutManager(this)
-        binding.rvCakeCategories.adapter = adapter
+        binding.rvCakes.layoutManager = LinearLayoutManager(this)
+        binding.rvCakes.adapter = adapter
     }
 
-    private fun executeAction(action: CakeCategoryAction) {
+    private fun executeAction(action: CakeListAction) {
         when (action) {
-            is CakeCategoryAction.UpdateCategoryList -> updateCategories(action.categories)
-            CakeCategoryAction.ShowErrorMsg -> showMessage("Erro ao carregar categorias.")
-            is CakeCategoryAction.NavigateToCakeList -> navigateToCakeList(action.category);
+            is CakeListAction.UpdateCakeList -> updateCakeList(action.cakes)
+            CakeListAction.ShowErrorMsg -> showMessage("Erro ao carregar categorias.")
+            is CakeListAction.NavigateToCakeDetails -> navigateToCakeDetails(action.cake);
             else -> {
                 Log.d("CakeListActivity", "Ação não reconhecida.")
             }
         }
     }
 
-    private fun navigateToCakeList(category: String) {
-        val cakeType = intent.getStringExtra("cakeType")
+    private fun navigateToCakeDetails(cake: Cake) {
+//        val intent = Intent(this, Cake::class.java).apply {
+//            putExtra("category", category)
+//        }
 
-        val intent = Intent(this, CakeListActivity::class.java).apply {
-            putExtra("cakeCategory", category)
-            putExtra("cakeType", cakeType)
-        }
-
-        Log.d("teste", category)
-
-        startActivity(intent)
+//        startActivity(intent)
     }
 
-    private fun updateCategories(categories: List<CakeCategory>) {
-        adapter.updateData(categories)
+     fun updateCakeList(cakes: List<Cake>) {
+        adapter.updateData(cakes)
     }
 
     private fun showMessage(msg: String) {
