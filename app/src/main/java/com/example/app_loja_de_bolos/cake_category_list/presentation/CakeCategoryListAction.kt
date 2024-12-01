@@ -4,4 +4,5 @@ sealed class CakeCategoryAction {
     data class UpdateCategoryList(val categories: List<CakeCategory>) : CakeCategoryAction()
     object ShowErrorMsg : CakeCategoryAction()
     data class NavigateToCakeList(val category: String) : CakeCategoryAction()
+    data class UiState(val isLoading: Boolean) : CakeCategoryAction()
 }

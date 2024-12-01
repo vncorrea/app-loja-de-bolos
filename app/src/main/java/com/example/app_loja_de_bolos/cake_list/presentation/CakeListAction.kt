@@ -7,4 +7,5 @@ sealed class CakeListAction {
     data class UpdateCakeList(val cakes: List<Cake>) : CakeListAction()
     object ShowErrorMsg : CakeListAction()
     data class NavigateToCakeDetails(val cake: Cake) : CakeListAction()
+    data class UiState (val isLoading: Boolean) : CakeListAction()
 }

@@ -23,11 +23,14 @@ class CakeListViewModel(
 
     fun fetchCakeList(cakeType: String?, cakeCategory: String?) {
         viewModelScope.launch {
+            _uiAction.emit(CakeListAction.UiState(isLoading = true))
             try {
                 val cakes = cakeListRepository.getCakesByCategory(cakeType, cakeCategory)
                 _uiAction.emit(CakeListAction.UpdateCakeList(cakes))
+                _uiAction.emit(CakeListAction.UiState(isLoading = false))
             } catch (e: Exception) {
                 Log.e("CakeCategoryListViewModel", "Error fetching categories", e)
+                _uiAction.emit(CakeListAction.UiState(isLoading = false))
                 _uiAction.emit(CakeListAction.ShowErrorMsg)
             }
         }

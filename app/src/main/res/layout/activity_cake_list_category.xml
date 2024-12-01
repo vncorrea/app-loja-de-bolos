@@ -15,7 +15,7 @@
         android:layout_marginTop="64dp"
         android:text="LISTA DE CATEGORIAS"
         android:textSize="24sp"
-        android:textColor="@color/black"
+        android:textColor="@color/dark_ldb"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,4 +31,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvHeader" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:indeterminate="true"
+        android:theme="@style/Widget.AppCompat.ProgressBar"
+        android:visibility="gone"
+        android:indeterminateTint="@color/dark_ldb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
