@@ -63,8 +63,14 @@ dependencies {
     implementation("io.insert-koin:koin-android:3.4.2")
 
     // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.androidx.runner)
+    implementation(libs.play.services.basement)
+    implementation(libs.play.services.basement)
+    implementation(libs.play.services.basement)
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation(libs.firebase.storage.ktx) // Extensão Firestore com suporte Kotlin
 

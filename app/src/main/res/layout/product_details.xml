@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/light_ldb">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Botão de voltar -->
+
+        <!-- Imagem do bolo -->
+        <ImageView
+            android:id="@+id/cakeImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sample_image" />
+
+        <!-- Nome e descrição do bolo -->
+        <TextView
+            android:id="@+id/cakeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Nome do Bolo"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_ldb" />
+
+        <TextView
+            android:id="@+id/cakeDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Descrição detalhada do bolo."
+            android:textSize="14sp"
+            android:textColor="@color/dark_ldb" />
+
+        <!-- Preços do bolo -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cakePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 49,90"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#4CAF50" />
+
+            <TextView
+                android:id="@+id/cakeOldPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="R$ 64,90"
+                android:textSize="16sp"
+                android:paintFlags="strikeThruText"
+                android:textColor="#999999" />
+        </LinearLayout>
+
+        <!-- Avaliação, Tempo de Entrega, Taxa de Entrega -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/cakeRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.2 ★"
+                android:textSize="14sp"
+                android:textColor="@color/dark_ldb" />
+
+            <TextView
+                android:id="@+id/cakeDeliveryTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="40-50 min"
+                android:textSize="14sp"
+                android:textColor="@color/dark_ldb" />
+
+            <TextView
+                android:id="@+id/cakeDeliveryFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Grátis"
+                android:textSize="14sp"
+                android:textColor="#4CAF50" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/proceedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Prosseguir"
+            android:backgroundTint="@color/dark_ldb"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</ScrollView>
