@@ -72,6 +72,18 @@ class ShoppingListViewModel(
         }
     }
 
+    fun onCheckoutClick() {
+        viewModelScope.launch {
+            try {
+                shoppingListRepository.clearCart();
+                _uiAction.emit(ShoppingListAction.NavigateToHome())
+            } catch (e: Exception) {
+                Log.e("ShoppingListViewModel", "Error deleting item", e)
+                _uiAction.emit(ShoppingListAction.ShowErrorMsg)
+            }
+        }
+    }
+
 //    fun onClickCake(cake: Cake) {
 //        _uiAction.value = CakeListAction.NavigateToCakeDetails(cake)
 //    }

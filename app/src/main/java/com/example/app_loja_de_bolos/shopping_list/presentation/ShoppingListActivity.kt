@@ -39,7 +39,6 @@ class ShoppingListActivity : AppCompatActivity() {
             insets
         }
 
-        // Inicialize o RecyclerView e o adapter antes de qualquer uso
         setupRecyclerView()
 
         lifecycleScope.launch {
@@ -60,7 +59,10 @@ class ShoppingListActivity : AppCompatActivity() {
             }
         }
 
-        // Carrega os itens do carrinho
+        binding.checkoutButton.setOnClickListener {
+            viewModel.onCheckoutClick()
+        }
+
         viewModel.fetchShoppingList()
     }
 
@@ -76,7 +78,7 @@ class ShoppingListActivity : AppCompatActivity() {
             },
             { cartItem, newQuantity ->
                 viewModel.updateItemQuantity(cartItem, newQuantity)
-            }
+            },
         )
 
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(this)
