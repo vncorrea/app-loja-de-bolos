@@ -80,9 +80,20 @@ class CakeDetailsActivity : AppCompatActivity() {
             }
 
             addToCartButton.setOnClickListener {
-                getFormattedCurrentPrice()
-                viewModel.onAddToCartButtonClicked()
-                finish();
+                viewModel.cakeDetails.value?.let { cakeDetails ->
+                    val updatedCakeDetails = cakeDetails.copy(
+                        quantity = totalQuantity,
+                        value = getFormattedCurrentPrice()
+                    )
+                    viewModel.onAddToCartButtonClicked(updatedCakeDetails)
+                    finish()
+                } ?: run {
+                    Toast.makeText(
+                        this@CakeDetailsActivity,
+                        "Erro ao adicionar ao carrinho.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }

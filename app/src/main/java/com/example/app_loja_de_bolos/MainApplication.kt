@@ -11,6 +11,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import com.example.app_loja_de_bolos.register.di.registerModule
+import com.example.app_loja_de_bolos.shopping_list.di.shoppingListModule
 
 class MainApplication : Application() {
 
@@ -27,6 +28,7 @@ class MainApplication : Application() {
             modules(cakeCategoryListModule)
             modules(cakeListModule)
             modules(cakeDetailsModule)
+            modules(shoppingListModule)
         }
     }
 }

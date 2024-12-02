@@ -30,11 +30,13 @@ class CakeDetailsViewModel(
         }
     }
 
-   fun onAddToCartButtonClicked() {
+    fun onAddToCartButtonClicked(updatedCakeDetails: CakeDetails) {
         viewModelScope.launch {
-            _cakeDetails.value?.let { cakeDetails ->
-                cakeDetailsRepository.addItemToCart(cakeDetails)
+            try {
+                cakeDetailsRepository.addItemToCart(updatedCakeDetails)
                 _uiAction.value = CakeDetailsAction.SHOW_SUCCESS_MSG
+            } catch (e: Exception) {
+                _uiAction.value = CakeDetailsAction.SHOW_ERROR_MSG
             }
         }
     }

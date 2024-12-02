@@ -174,7 +174,6 @@
                 android:layout_margin="4dp"
                 android:backgroundTint="@color/dark_ldb"
                 android:elevation="4dp"
-                android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:text="+"
                 android:textColor="@color/white"
