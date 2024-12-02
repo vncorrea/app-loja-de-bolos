@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.app_loja_de_bolos.R
 import com.example.app_loja_de_bolos.cake_category_list.presentation.CakeCategoryListActivity
 import com.example.app_loja_de_bolos.databinding.ActivityHomeBinding
+import com.example.app_loja_de_bolos.shopping_list.presentation.ShoppingListActivity
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -53,15 +54,26 @@ class HomeActivity : AppCompatActivity() {
                 Log.d("HomeActivity", "Button clicked: bolos_especiais")
                 viewModel.onCakesListClicked("bolos_especiais")
             }
+
+            fabCart.setOnClickListener {
+                viewModel.onCartClicked()
+            }
         }
     }
 
     private fun executeAction(action: HomeAction) {
         when (action) {
             is HomeAction.NavigateCakesList -> navigateCakesList(action.type)
+            is HomeAction.NavigateShoppingList -> navigateShoppingList();
             HomeAction.NavigatePromotions -> navigatePromotions()
             HomeAction.ShowErrorMsg -> showMessage("An error occurred. Try again.")
         }
+    }
+
+    private fun navigateShoppingList() {
+        val intent = Intent(this, ShoppingListActivity::class.java)
+
+        startActivity(intent)
     }
 
     private fun navigateCakesList(type: String) {

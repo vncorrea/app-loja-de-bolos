@@ -13,7 +13,8 @@ import com.example.app_loja_de_bolos.shopping_list.model.CartItem
 
 class ShoppingListAdapter(
     private val items: MutableList<CartItem>,
-    private val onDeleteItemClick: (CartItem) -> Unit
+    private val onDeleteItemClick: (CartItem) -> Unit,
+    private val onQuantityChange: (CartItem, Int) -> Unit
 ) : RecyclerView.Adapter<ShoppingListAdapter.ShoppingListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingListViewHolder {
@@ -46,15 +47,25 @@ class ShoppingListAdapter(
             binding.itemPrice.text = cartItem.value
             binding.itemQuantity.text = cartItem.quantity.toString()
 
-            Log.d("CakeListAdapter", "bind: ${cartItem.imageUrl}")
-
             Glide.with(binding.root.context)
                 .load(cartItem.imageUrl)
                 .into(binding.itemImage)
 
-//            binding.root.setOnClickListener {
-//                onCakeClicked(cake)
-//            }
+            binding.deleteButton.setOnClickListener {
+                onDeleteItemClick(cartItem)
+            }
+
+            binding.increaseQuantityButton.setOnClickListener {
+                val newQuantity = cartItem.quantity + 1
+                onQuantityChange(cartItem, newQuantity)
+            }
+
+            binding.decreaseQuantityButton.setOnClickListener {
+                if (cartItem.quantity > 1) {
+                    val newQuantity = cartItem.quantity - 1
+                    onQuantityChange(cartItem, newQuantity)
+                }
+            }
         }
     }
 }

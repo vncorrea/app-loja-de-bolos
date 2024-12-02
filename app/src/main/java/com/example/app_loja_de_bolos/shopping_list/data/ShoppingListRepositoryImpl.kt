@@ -20,6 +20,10 @@ class ShoppingListRepositoryImpl(
         return remoteDatasource.updateCart(items);
     }
 
+    override suspend fun updateItem(cartItem: CartItem) {
+        return remoteDatasource.updateItem(cartItem);
+    }
+
     override suspend fun clearCart() {
         return remoteDatasource.clearCart();
     }

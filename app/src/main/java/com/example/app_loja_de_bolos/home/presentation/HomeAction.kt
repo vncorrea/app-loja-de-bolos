@@ -4,4 +4,5 @@ sealed class HomeAction {
     object NavigatePromotions : HomeAction()
     object ShowErrorMsg : HomeAction()
     data class NavigateCakesList(val type: String) : HomeAction()
+    class NavigateShoppingList() : HomeAction()
 }

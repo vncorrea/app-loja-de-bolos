@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.app_loja_de_bolos.cake_details.model.CakeDetails
 import com.example.app_loja_de_bolos.databinding.ActivityCakeDetailsBinding
 import com.example.app_loja_de_bolos.login.presentation.LoginAction
+import com.example.app_loja_de_bolos.shopping_list.presentation.ShoppingListActivity
 import kotlinx.coroutines.launch
 
 class CakeDetailsActivity : AppCompatActivity() {

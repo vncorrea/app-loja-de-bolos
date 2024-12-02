@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.app_loja_de_bolos.cake_details.presentation.CakeDetailsActivity
 import com.example.app_loja_de_bolos.cake_list.model.Cake
 import com.example.app_loja_de_bolos.databinding.ActivityCakeListBinding
+import com.example.app_loja_de_bolos.shopping_list.presentation.ShoppingListActivity
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -54,6 +55,10 @@ class CakeListActivity : AppCompatActivity() {
         }
 
         viewModel.fetchCakeList(cakeType, cakeCategory)
+
+        binding.fabCart.setOnClickListener {
+            navigateToShoppingList()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -81,11 +86,18 @@ class CakeListActivity : AppCompatActivity() {
             CakeListAction.ShowErrorMsg -> showMessage("Erro ao carregar categorias.")
             is CakeListAction.NavigateToCakeDetails -> navigateToCakeDetails(action.cake);
             is CakeListAction.UiState -> handleLoadingState(action.isLoading)
+            is CakeListAction.NavigateToShoppingList -> navigateToShoppingList()
 
             else -> {
                 Log.d("CakeListActivity", "Ação não reconhecida.")
             }
         }
+    }
+
+    private fun navigateToShoppingList() {
+        val intent = Intent(this, ShoppingListActivity::class.java)
+
+        startActivity(intent)
     }
 
     private fun navigateToCakeDetails(cake: Cake) {

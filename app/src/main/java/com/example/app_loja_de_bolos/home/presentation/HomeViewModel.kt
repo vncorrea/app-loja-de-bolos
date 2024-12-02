@@ -35,4 +35,14 @@ class HomeViewModel(
             }
         }
     }
+
+    fun onCartClicked() {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                _uiAction.emit(HomeAction.NavigateShoppingList())
+            }.onFailure { e ->
+                Log.e("CART CLICK", e.message ?: "unknown", e)
+            }
+        }
+    }
 }

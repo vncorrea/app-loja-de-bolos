@@ -69,7 +69,7 @@ class CakeDetailsRemoteDatasourceImpl(
             description = snapshot.getString("description") ?: "",
             value = formatToUserValue(snapshot.getString("value") ?: ""),
             imageUrl = getImageUrl(snapshot.id),
-            quantity = 0
+            quantity = 1
         )
     }
 

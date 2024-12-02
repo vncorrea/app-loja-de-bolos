@@ -8,4 +8,5 @@ sealed class CakeListAction {
     object ShowErrorMsg : CakeListAction()
     data class NavigateToCakeDetails(val cake: Cake) : CakeListAction()
     data class UiState (val isLoading: Boolean) : CakeListAction()
+    class NavigateToShoppingList() : CakeListAction()
 }

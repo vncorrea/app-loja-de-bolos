@@ -55,6 +55,10 @@ class CakeCategoryListActivity : AppCompatActivity() {
         }
 
         viewModel.fetchCakeCategories(cakeType)
+
+        binding.fabCart.setOnClickListener {
+            navigateToShoppingList()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -70,10 +74,10 @@ class CakeCategoryListActivity : AppCompatActivity() {
         when (action) {
             is CakeCategoryAction.UpdateCategoryList -> updateCategories(action.categories)
             CakeCategoryAction.ShowErrorMsg -> showMessage("Erro ao carregar categorias.")
-            is CakeCategoryAction.NavigateToCakeList -> navigateToCakeList(action.category);
+            is CakeCategoryAction.NavigateToCakeList -> navigateToCakeList(action.category)
             is CakeCategoryAction.UiState -> handleLoadingState(action.isLoading)
             else -> {
-                Log.d("CakeListActivity", "Ação não reconhecida.")
+                Log.d("CakeCategoryListActivity", "Ação não reconhecida.")
             }
         }
     }
@@ -96,6 +100,11 @@ class CakeCategoryListActivity : AppCompatActivity() {
             putExtra("cakeType", cakeType)
         }
 
+        startActivity(intent)
+    }
+
+    private fun navigateToShoppingList() {
+        val intent = Intent(this, com.example.app_loja_de_bolos.shopping_list.presentation.ShoppingListActivity::class.java)
         startActivity(intent)
     }
 

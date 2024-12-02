@@ -113,9 +113,21 @@ class ShoppingListRemoteDatasourceImpl(
                 id = document.id,
                 name = document.getString("name") ?: "",
                 value = document.getString("value") ?: "0.0",
-                quantity = document.getLong("quantity")?.toInt() ?: 0,
+                quantity = document.getLong("quantity")?.toInt() ?: 1,
                 imageUrl = document.getString("imageUrl") ?: ""
             )
         }
+    }
+
+    override suspend fun updateItem(cartItem: CartItem) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+            ?: throw Exception("Usuário não autenticado")
+
+        firebaseFirestore.collection("cart")
+            .document(userId)
+            .collection("items")
+            .document(cartItem.id)
+            .set(cartItem)
+            .await()
     }
 }

@@ -30,7 +30,6 @@ class ShoppingListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityShoppingListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -40,26 +39,45 @@ class ShoppingListActivity : AppCompatActivity() {
             insets
         }
 
+        // Inicialize o RecyclerView e o adapter antes de qualquer uso
         setupRecyclerView()
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiAction.collect { action ->
-                    action?.let {
-                        executeAction(it)
-                        viewModel.resetUiAction()
+                launch {
+                    viewModel.cartTotal.collect { total ->
+                        binding.cartTotalText.text = formatToCurrency(total)
+                    }
+                }
+                launch {
+                    viewModel.uiAction.collect { action ->
+                        action?.let {
+                            executeAction(it)
+                            viewModel.resetUiAction()
+                        }
                     }
                 }
             }
         }
 
+        // Carrega os itens do carrinho
         viewModel.fetchShoppingList()
     }
 
+    private fun formatToCurrency(value: Double): String {
+        return String.format("R$ %.2f", value).replace(".", ",")
+    }
+
     private fun setupRecyclerView() {
-//        adapter = ShoppingListAdapter(mutableListOf()) { cartItem ->
-//            viewModel.on(cake)
-//        }
+        adapter = ShoppingListAdapter(
+            mutableListOf(),
+            { cartItem ->
+                viewModel.onDeleteItemClick(cartItem.id)
+            },
+            { cartItem, newQuantity ->
+                viewModel.updateItemQuantity(cartItem, newQuantity)
+            }
+        )
 
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.cartRecyclerView.adapter = adapter
@@ -79,22 +97,18 @@ class ShoppingListActivity : AppCompatActivity() {
         when (action) {
             is ShoppingListAction.updateCartList -> updateShoppingList(action.cartItems)
             ShoppingListAction.ShowErrorMsg -> showMessage("Erro ao carregar categorias.")
-            is ShoppingListAction.NavigateToHome -> navigateToHome();
+            is ShoppingListAction.NavigateToHome -> navigateToHome()
             is ShoppingListAction.UiState -> handleLoadingState(action.isLoading)
-
-            else -> {
-                Log.d("CakeListActivity", "Ação não reconhecida.")
-            }
+            else -> Log.d("ShoppingListActivity", "Ação não reconhecida.")
         }
     }
 
     private fun navigateToHome() {
         val intent = Intent(this, HomeActivity::class.java)
-
         startActivity(intent)
     }
 
-    fun updateShoppingList(cartItems: List<CartItem>) {
+    private fun updateShoppingList(cartItems: List<CartItem>) {
         adapter.updateData(cartItems)
     }
 
