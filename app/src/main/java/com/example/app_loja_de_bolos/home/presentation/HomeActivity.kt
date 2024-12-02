@@ -14,7 +14,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.app_loja_de_bolos.R
 import com.example.app_loja_de_bolos.cake_category_list.presentation.CakeCategoryListActivity
 import com.example.app_loja_de_bolos.databinding.ActivityHomeBinding
+import com.example.app_loja_de_bolos.login.presentation.LoginActivity
 import com.example.app_loja_de_bolos.shopping_list.presentation.ShoppingListActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -58,10 +60,23 @@ class HomeActivity : AppCompatActivity() {
             fabCart.setOnClickListener {
                 viewModel.onCartClicked()
             }
+            btnLogout.setOnClickListener {
+                logout()
+            }
         }
     }
 
-    private fun executeAction(action: HomeAction) {
+    private fun logout() {
+        FirebaseAuth.getInstance().signOut()
+
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+
+        finish()
+
+        }
+
+        private fun executeAction(action: HomeAction) {
         when (action) {
             is HomeAction.NavigateCakesList -> navigateCakesList(action.type)
             is HomeAction.NavigateShoppingList -> navigateShoppingList();

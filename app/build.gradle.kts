@@ -76,6 +76,8 @@ dependencies {
     //Android
     implementation(libs.androidx.runner)
     implementation(libs.play.services.basement)
+    implementation(libs.firebase.crashlytics.buildtools)
+
 
     // Testing
     testImplementation("junit:junit:4.13.2")

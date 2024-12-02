@@ -117,4 +117,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
+    <ImageButton
+        android:id="@+id/btnLogout"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="Logout"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:background="?attr/selectableItemBackgroundBorderless"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_margin="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

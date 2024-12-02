@@ -13,6 +13,7 @@ firebaseStorageKtx = "21.0.1"
 firebaseFirestoreKtx = "25.1.1"
 runner = "1.5.2"
 playServicesBasement = "18.1.0"
+firebaseCrashlyticsBuildtools = "3.0.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -27,6 +28,7 @@ firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 play-services-basement = { group = "com.google.android.gms", name = "play-services-basement", version.ref = "playServicesBasement" }
+firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
