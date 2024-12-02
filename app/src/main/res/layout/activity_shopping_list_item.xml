@@ -42,7 +42,7 @@
         android:backgroundTint="@color/dark_ldb"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:icon="@drawable/ic_minus"
+        android:text="-"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textStyle="bold"

@@ -60,9 +60,6 @@ class HomeActivity : AppCompatActivity() {
             fabCart.setOnClickListener {
                 viewModel.onCartClicked()
             }
-            btnLogout.setOnClickListener {
-                logout()
-            }
         }
     }
 

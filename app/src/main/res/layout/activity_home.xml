@@ -41,8 +41,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitulo"
-        android:src="@drawable/BannerLoja"
+        android:src="@drawable/bannerloja"
         android:scaleType="centerCrop" />
+
 
     <!-- Botões para Navegação (Bolos e Especiais) -->
     <LinearLayout
@@ -98,5 +99,6 @@
         android:contentDescription="Logout"
         android:src="@android:drawable/ic_menu_close_clear_cancel"
         android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+</androidx.constraintlayout.widget.ConstraintLayout>
