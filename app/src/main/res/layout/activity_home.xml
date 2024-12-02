@@ -32,38 +32,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logoImage" />
 
-    <!-- Carrossel de Imagens (ViewPager2) -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
+    <!-- Imagem Estática -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        android:src="@drawable/BannerLoja"
+        android:scaleType="centerCrop" />
 
-    <!-- Indicador do Carrossel -->
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:tabIndicatorColor="@color/dark_ldb"
-        app:tabIndicatorHeight="4dp"
-        app:tabSelectedTextColor="@color/dark_ldb"
-        app:tabTextColor="@color/dark_ldb"
-        app:layout_constraintTop_toBottomOf="@id/viewPager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Botões para Navegação -->
+    <!-- Botões para Navegação (Bolos e Especiais) -->
     <LinearLayout
         android:id="@+id/buttonContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tabIndicator"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -71,10 +59,10 @@
             android:id="@+id/btnBolos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            android:text="BOLOS"
+            android:layout_weight="1"
             android:backgroundTint="@color/dark_ldb"
+            android:text="BOLOS"
             android:textColor="@android:color/white" />
 
         <Button
@@ -88,21 +76,7 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
-    <!-- Endereço -->
-    <TextView
-        android:id="@+id/tvEndereco"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Endereço: Rua Professor Felisberto Almada, 171 - Centro, Bonfim Paulista"
-        android:textAlignment="center"
-        android:textColor="@color/dark_ldb"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
     <!-- Floating Action Button (Carrinho) -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -124,8 +98,5 @@
         android:contentDescription="Logout"
         android:src="@android:drawable/ic_menu_close_clear_cancel"
         android:background="?attr/selectableItemBackgroundBorderless"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    android:layout_margin="16dp" />
+        app:layout_constraintTop_toTopOf="parent"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
