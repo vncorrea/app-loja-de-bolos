@@ -77,6 +77,7 @@ class ShoppingListViewModel(
             try {
                 shoppingListRepository.clearCart();
                 _uiAction.emit(ShoppingListAction.NavigateToHome())
+                _uiAction.emit(ShoppingListAction.ShowSuccessMsg)
             } catch (e: Exception) {
                 Log.e("ShoppingListViewModel", "Error deleting item", e)
                 _uiAction.emit(ShoppingListAction.ShowErrorMsg)

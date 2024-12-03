@@ -8,4 +8,5 @@ sealed class ShoppingListAction {
     object ShowErrorMsg : ShoppingListAction()
     class NavigateToHome() : ShoppingListAction()
     data class UiState(val isLoading: Boolean) : ShoppingListAction()
+    object ShowSuccessMsg : ShoppingListAction()
 }

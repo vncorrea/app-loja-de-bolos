@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
         when(action) {
             LoginAction.NAVIGATE_HOME -> navigateHome()
             LoginAction.NAVIGATE_REGISTER -> navigateRegister()
-            LoginAction.SHOW_ERROR_MSG -> showMessage("An error occurred. Try again.")
+            LoginAction.SHOW_ERROR_MSG -> showMessage("Um erro ocorreu. Tente novamente!")
             LoginAction.NAVIGATE_RECOVER_PASSWORD -> navigateRecoverPassword()
         }
     }

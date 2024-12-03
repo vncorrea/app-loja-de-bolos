@@ -54,7 +54,7 @@ class RecoverPasswordActivity : AppCompatActivity() {
     private fun executeAction(action: RecoverPasswordAction) {
         when (action) {
             RecoverPasswordAction.NAVIGATE_LOGIN -> navigateLogin()
-            RecoverPasswordAction.SHOW_ERROR_MSG -> showMessage("An error occurred. Try again.")
+            RecoverPasswordAction.SHOW_ERROR_MSG -> showMessage("Um erro ocorreu. Tente novamente!")
         }
     }
 

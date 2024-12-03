@@ -50,7 +50,8 @@ class RegisterActivity : AppCompatActivity() {
     private fun executeAction(action: RegisterAction) {
         when (action) {
             RegisterAction.NAVIGATE_LOGIN -> navigateLogin()
-            RegisterAction.SHOW_ERROR_MSG -> showMessage("An error occurred. Try again.")
+            RegisterAction.SHOW_ERROR_MSG -> showMessage("Um erro ocorreu. Tente novamente!")
+            RegisterAction.SHOW_SUCCESS_MSG -> showMessage("Registrado com sucesso!")
         }
     }
 

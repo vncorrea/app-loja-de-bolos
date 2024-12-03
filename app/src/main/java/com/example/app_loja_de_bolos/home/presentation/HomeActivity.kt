@@ -72,7 +72,7 @@ class HomeActivity : AppCompatActivity() {
             is HomeAction.NavigateCakesList -> navigateCakesList(action.type)
             is HomeAction.NavigateShoppingList -> navigateShoppingList();
             is HomeAction.NavigateLogin -> navigateLogin()
-            HomeAction.ShowErrorMsg -> showMessage("An error occurred. Try again.")
+            HomeAction.ShowErrorMsg -> showMessage("Um erro ocorreu. Tente novamente!")
         }
     }
 

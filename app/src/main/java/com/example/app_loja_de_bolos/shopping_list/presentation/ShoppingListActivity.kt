@@ -101,6 +101,7 @@ class ShoppingListActivity : AppCompatActivity() {
             ShoppingListAction.ShowErrorMsg -> showMessage("Erro ao carregar categorias.")
             is ShoppingListAction.NavigateToHome -> navigateToHome()
             is ShoppingListAction.UiState -> handleLoadingState(action.isLoading)
+            is ShoppingListAction.ShowSuccessMsg -> showMessage("Pedido realizado com sucesso!")
             else -> Log.d("ShoppingListActivity", "Ação não reconhecida.")
         }
     }
