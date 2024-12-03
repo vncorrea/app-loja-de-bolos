@@ -36,18 +36,20 @@
         android:id="@+id/decreaseQuantityButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_margin="8dp"
+        android:elevation="4dp"
         android:backgroundTint="@color/dark_ldb"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="-"
-        android:textColor="@android:color/white"
+        android:paddingTop="0dp"
+        android:paddingStart="3dp"
+        android:paddingEnd="4dp"
+        android:textColor="@color/white"
         android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/itemImage"
         app:layout_constraintTop_toBottomOf="@id/itemName" />
+
 
     <!-- Quantidade do item -->
     <TextView
@@ -75,9 +77,12 @@
         android:backgroundTint="@color/dark_ldb"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
+        android:paddingTop="3dp"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
         android:text="+"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/itemQuantity"
         app:layout_constraintTop_toBottomOf="@id/itemName" />

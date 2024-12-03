@@ -5,4 +5,5 @@ import com.google.firebase.firestore.CollectionReference
 
 interface HomeRepository {
     fun getCakeTypes(): CollectionReference
+    fun logout(): Unit
 }

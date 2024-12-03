@@ -5,5 +5,5 @@ import com.google.firebase.firestore.CollectionReference
 
 interface HomeRemoteDatasource {
     fun getCakeTypes(): CollectionReference
-    fun getCakeImages()
+    fun logout(): Unit
 }

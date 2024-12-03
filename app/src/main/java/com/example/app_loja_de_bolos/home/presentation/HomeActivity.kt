@@ -60,26 +60,28 @@ class HomeActivity : AppCompatActivity() {
             fabCart.setOnClickListener {
                 viewModel.onCartClicked()
             }
+
+            btnLogout.setOnClickListener {
+                viewModel.onLogoutClicked()
+            }
         }
     }
 
-    private fun logout() {
-        FirebaseAuth.getInstance().signOut()
-
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-
-        finish()
-
-        }
-
-        private fun executeAction(action: HomeAction) {
+    private fun executeAction(action: HomeAction) {
         when (action) {
             is HomeAction.NavigateCakesList -> navigateCakesList(action.type)
             is HomeAction.NavigateShoppingList -> navigateShoppingList();
-            HomeAction.NavigatePromotions -> navigatePromotions()
+            is HomeAction.NavigateLogin -> navigateLogin()
             HomeAction.ShowErrorMsg -> showMessage("An error occurred. Try again.")
         }
+    }
+
+    private fun navigateLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+
+        startActivity(intent)
+
+        finish()
     }
 
     private fun navigateShoppingList() {
@@ -94,12 +96,6 @@ class HomeActivity : AppCompatActivity() {
         }
         Log.d("HomeActivity", "navigateCakesList: $type")
         startActivity(intent)
-    }
-
-    private fun navigatePromotions() {
-//        val intent = Intent(this, PromotionsActivity::class.java)
-//        intent.putExtra("promotion", promotion)
-//        startActivity(intent)
     }
 
     private fun showMessage(msg: String) {

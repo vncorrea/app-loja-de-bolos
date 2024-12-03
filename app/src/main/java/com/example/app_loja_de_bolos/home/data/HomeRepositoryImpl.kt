@@ -7,4 +7,5 @@ class HomeRepositoryImpl(
     private val remoteDatasource: HomeRemoteDatasource
 ) : HomeRepository {
     override fun getCakeTypes(): CollectionReference = remoteDatasource.getCakeTypes()
+    override fun logout(): Unit = remoteDatasource.logout()
 }

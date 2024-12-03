@@ -45,4 +45,15 @@ class HomeViewModel(
             }
         }
     }
+
+    fun onLogoutClicked() {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                homeRepository.logout()
+                _uiAction.emit(HomeAction.NavigateLogin())
+            }.onFailure { e ->
+                Log.e("LOGOUT CLICK", e.message ?: "unknown", e)
+            }
+        }
+    }
 }
